@@ -14,6 +14,9 @@ int main()
 	gre::g_renderer.CreateWindow("Neumont", 800, 600);
 	gre::g_renderer.setClearColor(gre::Color{ 0,0,0,255 });
 
+	//create image
+	std::shared_ptr<gre::Texture> texture = std::make_shared<gre::Texture>();
+	texture->Create(gre::g_renderer, "pikachu.png");
 	
 		//create game
 		
@@ -34,7 +37,7 @@ int main()
 			//render
 			gre::g_renderer.BeginFrame();
 
-			
+			gre::g_renderer.Draw(texture, { 300, 300}, 0);
 
 			gre::g_renderer.EndFrame();
 		}

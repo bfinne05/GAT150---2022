@@ -1,5 +1,6 @@
 #pragma once
 #include "../Math/Vector2.h"
+#include "Texture.h"
 #include "../Math/Color.h"
 #include "Text.h"
 struct SDL_Renderer;
@@ -8,6 +9,7 @@ struct SDL_Window;
 namespace gre
 {
 	class text;
+	class Texture;
 
 	class Renderer
 	{
@@ -29,6 +31,8 @@ namespace gre
 		void DrawPoint(float x, float y);
 		void DrawPoint(const Vector2& v, const Color& color); //
 
+		void Draw(std::shared_ptr<Texture> texture, const Vector2& position, float angle = 0);
+
 		int getWidth() { return m_width; }
 		int getHeight() { return m_height; }
 
@@ -38,9 +42,11 @@ namespace gre
 
 		Color m_clearColor{0,0,0,255};
 
+
 		SDL_Renderer* m_renderer = nullptr;
 		SDL_Window* m_window = nullptr;
 		friend class Text;
+		friend class Texture;
 	};
 }
 

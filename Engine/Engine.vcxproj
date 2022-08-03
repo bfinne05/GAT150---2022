@@ -38,6 +38,7 @@
     <ClInclude Include="Renderer\Model.h" />
     <ClInclude Include="Renderer\Renderer.h" />
     <ClInclude Include="Renderer\Text.h" />
+    <ClInclude Include="Renderer\Texture.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Audio\AudioSystem.cpp" />
@@ -52,6 +53,7 @@
     <ClCompile Include="Renderer\Model.cpp" />
     <ClCompile Include="Renderer\Renderer.cpp" />
     <ClCompile Include="Renderer\Text.cpp" />
+    <ClCompile Include="Renderer\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Build\Assets\Bullet.txt" />
@@ -138,7 +140,7 @@
     </Link>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)ThirdParty\SDL2-2.0.22\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\fmod\core\lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;fmod_vc.lib;SDL2_ttf.lib</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;fmod_vc.lib;SDL2_ttf.lib;SDL2_image.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -160,7 +162,7 @@
     </Link>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)ThirdParty\SDL2-2.0.22\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\fmod\core\lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;fmod_vc.lib;SDL2_ttf.lib</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;fmod_vc.lib;SDL2_ttf.lib;SDL2_image.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -178,7 +180,7 @@
     </Link>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)ThirdParty\SDL2-2.0.22\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\fmod\core\lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;fmod_vc.lib;SDL2_ttf.lib</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;fmod_vc.lib;SDL2_ttf.lib;SDL2_image.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -200,7 +202,7 @@
     </Link>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)ThirdParty\SDL2-2.0.22\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\fmod\core\lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;fmod_vc.lib;SDL2_ttf.lib</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;fmod_vc.lib;SDL2_ttf.lib;SDL2_image.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
