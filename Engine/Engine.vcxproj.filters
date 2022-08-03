@@ -89,6 +89,9 @@
     <ClInclude Include="Renderer\Texture.h">
       <Filter>Sources\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="Core\Logger.h">
+      <Filter>Sources\Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Memory.cpp">
@@ -129,6 +132,9 @@
     </ClCompile>
     <ClCompile Include="Renderer\Texture.cpp">
       <Filter>Sources\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Logger.cpp">
+      <Filter>Sources\Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

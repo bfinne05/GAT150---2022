@@ -1,4 +1,5 @@
 #include "Engine.h"
+
 #include <iostream>
 
 int main()
@@ -6,6 +7,7 @@ int main()
 	gre::InitializeMemory();
 	gre::setFilePath("../Assets");
 
+	//initialize systems
 	gre::g_renderer.Initialize();
 	gre::g_inputSystem.Initialize();
 	gre::g_audioSystem.Initialize();
