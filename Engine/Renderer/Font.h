@@ -1,22 +1,23 @@
 #pragma once 
-// !! add necessary includes 
 #include "Renderer.h"
+#include "Resource/Resource.h"
 #include "Text.h"
 
-// !! forward declare the _TTF_Font struct 
 struct _TTF_Font;
 
 namespace gre
-{
+{// make this a resource
 	class text;
-	class Font
+	class Font : public Resource
 	{
 	public:
 		Font() = default;
 		Font(const std::string& filename, int fontSize);
 		~Font();
 
-		void Load(const std::string& filename, int fontSize);
+		//bool Create(const std::string& filename, void* data = nullptr) override; 
+		bool Create(std::string filename, ...) override;
+		bool Load(const std::string& filename, int fontSize);
 
 	private:
 		_TTF_Font* m_ttfFont = nullptr;

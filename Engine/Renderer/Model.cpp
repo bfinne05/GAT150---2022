@@ -1,7 +1,10 @@
 #include "Model.h"
-#include "../Core/File.h"
+#include "Core/File.h"
+#include "Core/Logger.h"
+#include "Math/Transform.h"
 #include <sstream>
 #include <iostream>
+#include <cstdarg>
 
 namespace gre
 {
@@ -10,7 +13,23 @@ namespace gre
 		Load(filename);
 		m_radius = CalculateRadius();
 	}
-	void Model::Draw(Renderer& renderer, const Vector2& position, float angle, float scale)
+	//bool Model::Create(const std::string& filename, void* data)
+	//{
+	//	if (!Load(filename))
+	//	{
+	//		LOG("Error could not read file %s", filename.c_str());
+	//		return false;
+	//	}
+	//	return true;
+	//}
+
+	bool Model::Create(std::string filename, ...)
+	{
+		// create texture (returns true/false if successful) 
+		return Load(filename);
+	}
+
+	void Model::Draw(Renderer& renderer, const Vector2& position, float angle, const Vector2& scale)
 	{
 	
 		//draw model
@@ -23,11 +42,32 @@ namespace gre
 		}
 	}
 
-	void Model::Load(std::string filename)
+	void Model::Draw(Renderer& renderer, const Transform& transform)
+	{
+		//draw model
+
+		Matrix3x3 mx = transform.matrix;
+
+		//if (m_points.size() == 0) return;
+
+		for (int i = 0; i < m_points.size() - 1; i++)
+		{
+			gre::Vector2 p1 = mx * m_points[i];
+			gre::Vector2 p2 = mx * m_points[i + 1];
+
+			renderer.DrawLine(p1, p2, m_color);
+		}
+	}
+
+	bool Model::Load(const std::string& filename)
 	{
 		std::string buffer;
 
-		gre::ReadFile(filename, buffer);
+		if (!gre::ReadFile(filename, buffer))
+		{
+			LOG("Error could not read file %s", filename.c_str());
+			return false;
+		}
 
 		//read color
 		std::istringstream stream(buffer);
@@ -46,6 +86,7 @@ namespace gre
 			stream >> point;
 			m_points.push_back(point);
 		}
+		return true;
 	}
 
 	float Model::CalculateRadius()

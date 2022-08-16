@@ -1,6 +1,7 @@
 #pragma once
 #include <cstdint>
-#include <iostream>
+#include <istream>
+#include <string>
 
 namespace gre
 {
@@ -13,27 +14,16 @@ namespace gre
 		uint8_t g;
 		uint8_t b;
 		uint8_t a;
+
+
+
+		static const Color white;
+		static const Color black;
+		static const Color red;
+		static const Color green;
+		static const Color blue;
 	};
 
-	inline std::istream& operator >> (std::istream& stream, Color& color)
-	{
-		std::string line;
-		std::getline(stream, line);
+	std::istream& operator >> (std::istream& stream, Color& color);
 
-		std::string str;
-		//find red in file
-		str = line.substr(line.find("{") + 1);
-		color.r = (uint8_t)(std::stof(str) * 255);
-		//find green in file
-		str = line.substr(line.find(",") + 1);
-		color.g = (uint8_t)(std::stof(str) * 255);
-
-		//read blue in file
-		str = line.substr(line.find("}") - 1);
-		color.b = (uint8_t)(std::stof(str) * 255);
-
-		color.a = 255;
-		
-		return stream;
-	}
 }

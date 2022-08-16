@@ -28,6 +28,8 @@ namespace gre
 		T* GetActor();
 
 
+
+
 		Game* GetGame() { return m_game; }
 	private:
 		Game* m_game;
@@ -37,12 +39,10 @@ namespace gre
 	template<typename T>
 	inline T* Scene::GetActor()
 	{
-		//int i = 45;
-		//float f = float(34) // 45 ->45.0f
 		for (auto& actor : m_actors)
 		{
-			//T* result = dynamic_cast<T*>(actor.get())
-				//if (result) return result;
+			T* result = dynamic_cast<T*>(actor.get());
+			if (result) return result;
 
 		}
 		return nullptr;

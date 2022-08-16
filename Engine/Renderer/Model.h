@@ -2,10 +2,11 @@
 #include"Renderer.h"
 #include<vector>
 #include <string>
+#include "Resource/Resource.h"
 
 namespace gre
 {
-	class Model
+	class Model : public Resource
 	{
 	public:
 		Model() = default;
@@ -17,10 +18,13 @@ namespace gre
 		Model(const std::string& filename);
 		~Model() = default;
 
+		//bool Create(const std::string& filename, void* data = nullptr) override;
+		bool Create(std::string filename, ...) override;
 
-		void Draw(Renderer& renderer,const Vector2& position,float angle, float scale = 1);
+		void Draw(Renderer& renderer,const Vector2& position,float angle, const Vector2& scale);
+		void Draw(Renderer& renderer, const Transform& transform);
 
-		void Load(std::string filename);
+		bool Load(const std::string& filename);
 		float CalculateRadius();
 
 		float getRadius() { return m_radius; }

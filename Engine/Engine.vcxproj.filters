@@ -27,6 +27,15 @@
     <Filter Include="Sources\Audio">
       <UniqueIdentifier>{38cc0ce2-1c8d-46d3-82a1-6d82be34288d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Components">
+      <UniqueIdentifier>{ff2f37b0-84dc-423d-a978-ba651c1b8d4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Resource">
+      <UniqueIdentifier>{215467c6-9df7-4cae-89b0-3fd3bb1677ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Serialization">
+      <UniqueIdentifier>{9250a08d-bebc-4029-9067-b13f94caee8e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\MathUtils.h">
@@ -65,9 +74,6 @@
     <ClInclude Include="FrameWork\Actor.h">
       <Filter>Sources\FrameWork</Filter>
     </ClInclude>
-    <ClInclude Include="Engine.h">
-      <Filter>Sources</Filter>
-    </ClInclude>
     <ClInclude Include="Core\Time.h">
       <Filter>Sources\Core</Filter>
     </ClInclude>
@@ -91,6 +97,54 @@
     </ClInclude>
     <ClInclude Include="Core\Logger.h">
       <Filter>Sources\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Component.h">
+      <Filter>Sources\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\PlayerComponent.h">
+      <Filter>Sources\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\RendererComponent.h">
+      <Filter>Sources\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\SpriteComponent.h">
+      <Filter>Sources\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\AudioComponent.h">
+      <Filter>Sources\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\PhysicsComponent.h">
+      <Filter>Sources\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Matrix2x2.h">
+      <Filter>Sources\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vector3.h">
+      <Filter>Sources\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Matrix3x3.h">
+      <Filter>Sources\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\ModelComponent.h">
+      <Filter>Sources\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Resource.h">
+      <Filter>Sources\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\ResourceManager.h">
+      <Filter>Sources\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Singleton.h">
+      <Filter>Sources\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Factory.h">
+      <Filter>Sources\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="Serialization\Json.h">
+      <Filter>Sources\Serialization</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -135,6 +189,39 @@
     </ClCompile>
     <ClCompile Include="Core\Logger.cpp">
       <Filter>Sources\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Vector2.cpp">
+      <Filter>Sources\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Color.cpp">
+      <Filter>Sources\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\PlayerComponent.cpp">
+      <Filter>Sources\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\SpriteComponent.cpp">
+      <Filter>Sources\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\PhysicsComponent.cpp">
+      <Filter>Sources\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\AudioComponent.cpp">
+      <Filter>Sources\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Matrix2x2.cpp">
+      <Filter>Sources\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Matrix3x3.cpp">
+      <Filter>Sources\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\ModelComponent.cpp">
+      <Filter>Sources\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\ResourceManager.cpp">
+      <Filter>Sources\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Serialization\Json.cpp">
+      <Filter>Sources\Serialization</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

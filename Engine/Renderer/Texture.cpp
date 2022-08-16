@@ -9,7 +9,7 @@ namespace gre
     Texture::~Texture()
     {
         // !! if texture not null SDL_DestroyTexture 
-        if (m_texture != NULL) SDL_DestroyTexture;
+        if (m_texture != NULL) SDL_DestroyTexture(m_texture);
     }
 
     bool Texture::Create(Renderer& renderer, const std::string& filename)
@@ -40,11 +40,37 @@ namespace gre
             return true;
     }
 
+    //bool Texture::Create(const std::string& filename, void* data)
+    //{
+    //    //check data is not null
+    //    Renderer* renderer = static_cast<Renderer*>(data);
+
+    //    return Create(*renderer, filename);
+    //}
+
     gre::Vector2 Texture::GetSize() const
     {
-        SDL_Point point;
+        SDL_Point point{0, 0};
         SDL_QueryTexture(m_texture, nullptr, nullptr, &point.x, &point.y);
 
         return Vector2{ point.x, point.y }; // !! return Vector2 of point.x, point.y 
+    }
+
+    bool Texture::Create(std::string filename, ...)
+    {
+        // va_list - type to hold information about variable arguments 
+        va_list args;
+
+        // va_start - enables access to variadic function arguments 
+        va_start(args, filename);
+
+        // va_arg - accesses the next variadic function arguments 
+        Renderer& renderer = va_arg(args, Renderer);
+
+        // va_end - ends traversal of the variadic function arguments 
+        va_end(args);
+
+        // create texture (returns true/false if successful) 
+        return Create(renderer, filename);
     }
 }
