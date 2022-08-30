@@ -5,6 +5,7 @@
 
 namespace gre
 {
+
 	struct Vector2
 	{
 		float x, y;
@@ -18,6 +19,8 @@ namespace gre
 
 		float operator [] (size_t index) const { return (&x)[index]; }
 		float& operator [] (size_t index) { return (&x)[index]; }
+
+
 		
 		//Arithmatic operators
 		//Vector2 = Vector2 + Vector2
@@ -72,10 +75,15 @@ namespace gre
 		static const Vector2 down;
 		static const Vector2 left;
 		static const Vector2 right;
+
+		float Dot(const Vector2& v);
+		float GetAngleBetween(const Vector2& v);
+		float GetSignedAngleBetween(const Vector2& v);
 	};
 
-
 	std::istream& operator >> (std::istream& stream, Vector2& v);
+	std::ostream& operator << (std::ostream& stream, const Vector2& v);
+
 	
 
 	inline float Vector2::LengthSqr() { return x * x + y * y; }

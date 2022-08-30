@@ -20,10 +20,17 @@ namespace gre
 		color.g = (uint8_t)(std::stof(str) * 255);
 
 		//read blue in file
-		str = line.substr(line.find("}") - 1);
+		str = line.substr(line.find(",") + 1);
 		color.b = (uint8_t)(std::stof(str) * 255);
 
 		color.a = 255;
+
+		return stream;
+	}
+
+	std::ostream& operator<<(std::ostream& stream, const Color& color)
+	{
+		stream << (int)color.r << " " << (int)color.g << " " << (int)color.b << " " << (int)color.a;
 
 		return stream;
 	}

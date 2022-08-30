@@ -21,11 +21,17 @@ namespace gre
 
 		static Matrix3x3 CreateScale(const Vector2& scale);
 		static Matrix3x3 CreateScale(const float scale);
-		static Matrix3x3 CreatetRotation(float radians);
-		static Matrix3x3 CreatetTranslation(const Vector2& translate);
+		static Matrix3x3 CreateRotation(float radians);
+		static Matrix3x3 CreateTranslation(const Vector2& translate);
+
+		Vector2 GetTranslation() const;
+		float GetRotation() const;
+		Vector2 GetScale() const;
 
 		static const Matrix3x3 identity;
 		static const Matrix3x3 zero;
+
+
 	}; 
 
 
@@ -98,7 +104,7 @@ namespace gre
 
 		return mx;
 	}
-	inline Matrix3x3 Matrix3x3::CreatetRotation(float radians)
+	inline Matrix3x3 Matrix3x3::CreateRotation(float radians)
 	{
 		Matrix3x3 mx;
 
@@ -116,7 +122,7 @@ namespace gre
 
 		return mx;
 	}
-	inline Matrix3x3 Matrix3x3::CreatetTranslation(const Vector2& translate)
+	inline Matrix3x3 Matrix3x3::CreateTranslation(const Vector2& translate)
 	{
 		Matrix3x3 mx = identity;
 

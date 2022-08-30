@@ -7,6 +7,8 @@ namespace gre
 	Time g_time;
 	AudioSystem g_audioSystem;
 	ResourceManager g_resources;
+	PhysicsSystem g_physicsSystem;
+	EventManager g_eventManager;
 
 
 	void Engine::Register()
@@ -16,7 +18,12 @@ namespace gre
 		REGISTER_CLASS(ModelComponent);
 		REGISTER_CLASS(PhysicsComponent);
 		REGISTER_CLASS(PlayerComponent);
+		REGISTER_CLASS(RBPhysicsComponent);
+		REGISTER_CLASS(CollisionComponent);
 		REGISTER_CLASS(SpriteComponent);
+		REGISTER_CLASS(SpriteAnimComponent);
+		REGISTER_CLASS(TilemapComponent);
+		REGISTER_CLASS(TextComponent);
 	
 
 	}

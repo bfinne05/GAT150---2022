@@ -8,4 +8,5 @@ namespace gre
 		virtual bool Create(std::string name, ...) = 0;
 
 	};
+
 }

@@ -5,6 +5,7 @@
 
 // !! forward declaration for SDL pointers below (SDL likes to use structs) 
 struct SDL_Texture;
+struct SDL_Surface;
 // !! add namespace 
 namespace gre
 {
@@ -18,8 +19,8 @@ public:
 	~Texture();
 
 	bool Create(Renderer& renderer, const std::string& filename);
-	//bool Create(const std::string& filename, void* data = nullptr) override;
 	bool Create(std::string filename, ...) override;
+	bool CreateFromSurface(SDL_Surface* surface, Renderer& renderer);
 
 	Vector2 GetSize() const;
 

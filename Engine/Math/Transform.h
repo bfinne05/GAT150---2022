@@ -3,9 +3,10 @@
 #include "Matrix2x2.h"
 #include "Matrix3x3.h"
 #include "Math/MathUtils.h"
+#include "Serialization/ISerializable.h"
 namespace gre
 {
-	struct Transform
+	struct Transform : public ISerializable
 	{
 		Vector2 position;
 		float rotation{0};
@@ -13,11 +14,16 @@ namespace gre
 
 		Matrix3x3 matrix;
 
+		// Inherited via ISerializable
+		virtual bool Write(const rapidjson::Value& value) const override;
+		virtual bool Read(const rapidjson::Value& value) override;
+
+
 		void Update()
 		{
 			Matrix3x3 mxScale = Matrix3x3::CreateScale(scale);
-			Matrix3x3 mxRotation = Matrix3x3::CreatetRotation(Math::DegToRad(rotation));
-			Matrix3x3 mxTranslation = Matrix3x3::CreatetTranslation(position);
+			Matrix3x3 mxRotation = Matrix3x3::CreateRotation(Math::DegToRad(rotation));
+			Matrix3x3 mxTranslation = Matrix3x3::CreateTranslation(position);
 
 			matrix = (mxTranslation * mxRotation * mxScale);
 		}
@@ -26,8 +32,8 @@ namespace gre
 		void Update(const Matrix3x3& parent)
 		{
 			Matrix3x3 mxScale = Matrix3x3::CreateScale(scale);
-			Matrix3x3 mxRotation = Matrix3x3::CreatetRotation(Math::DegToRad(rotation));
-			Matrix3x3 mxTranslation = Matrix3x3::CreatetTranslation(position);
+			Matrix3x3 mxRotation = Matrix3x3::CreateRotation(Math::DegToRad(rotation));
+			Matrix3x3 mxTranslation = Matrix3x3::CreateTranslation(position);
 
 			matrix = (mxTranslation * mxRotation * mxScale);
 			matrix = parent * matrix;
@@ -36,9 +42,10 @@ namespace gre
 		operator Matrix3x3 () const
 		{
 			Matrix3x3 mxScale = Matrix3x3::CreateScale(scale);
-			Matrix3x3 mxRotation = Matrix3x3::CreatetRotation(Math::DegToRad(rotation));
-			Matrix3x3 mxTranslation = Matrix3x3::CreatetTranslation(position);
+			Matrix3x3 mxRotation = Matrix3x3::CreateRotation(Math::DegToRad(rotation));
+			Matrix3x3 mxTranslation = Matrix3x3::CreateTranslation(position);
 			return (mxTranslation * mxRotation * mxScale);
 		}
+
 	};
 }

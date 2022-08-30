@@ -24,4 +24,29 @@ namespace gre
 
 		return stream;
 	}
+
+	std::ostream& operator<<(std::ostream& stream, const Vector2& v)
+	{
+		stream << v.x << " " << v.y;
+
+		return stream;
+	}
+
+	inline float Vector2::Dot(const Vector2& v)
+	{
+		return x * v.x + y * v.y;
+	}
+
+	inline float Vector2::GetAngleBetween(const Vector2& v)
+	{
+		return std::acos(Dot(v));
+	}
+
+	inline float Vector2::GetSignedAngleBetween(const Vector2& v)
+	{
+		float y = x * v.y - y * v.x; // perpendicular dot product 
+		float x = x * v.x + y * v.y; // dor product 
+
+		return std::atan2(y, x);
+	}
 }
