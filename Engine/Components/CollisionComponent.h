@@ -24,11 +24,13 @@ namespace gre
 		virtual void OnCollisionEnter(Actor* other) override;
 		virtual void OnCollisionExit(Actor* other) override;
 
-		void SetCollisoinEnter(functionPtr function) { m_enterFunction = function; }
-		void SetCollisoinExit(functionPtr function) { m_exitFunction = function; }
+		void SetCollisionEnter(functionPtr function) { m_enterFunction = function; }
+		void SetCollisionExit(functionPtr function) { m_exitFunction = function; }
 
 	private:
 		PhysicsSystem::CollisionData data;
+		Vector2 scale_offset = Vector2{ 1,1 };
+
 		functionPtr m_enterFunction;
 		functionPtr m_exitFunction;
 	};

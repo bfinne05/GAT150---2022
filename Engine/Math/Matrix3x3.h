@@ -59,17 +59,46 @@ namespace gre
 
 		result[0][0] = rows[0][0] * mx[0][0] + rows[0][1] * mx[1][0] + rows[0][2] * mx[2][0];
 		result[0][1] = rows[0][0] * mx[0][1] + rows[0][1] * mx[1][1] + rows[0][2] * mx[2][1];
-		result[0][2] = rows[0][0] * mx[0][1] + rows[0][1] * mx[1][1] + rows[0][2] * mx[2][2];
+		result[0][2] = rows[0][0] * mx[0][2] + rows[0][1] * mx[1][2] + rows[0][2] * mx[2][2];
 
 		result[1][0] = rows[1][0] * mx[0][0] + rows[1][1] * mx[1][0] + rows[1][2] * mx[2][0];
 		result[1][1] = rows[1][0] * mx[0][1] + rows[1][1] * mx[1][1] + rows[1][2] * mx[2][1];
-		result[1][2] = rows[1][0] * mx[0][2] + rows[1][1] * mx[1][1] + rows[1][2] * mx[2][2];
+		result[1][2] = rows[1][0] * mx[0][2] + rows[1][1] * mx[1][2] + rows[1][2] * mx[2][2];
 
 		result[2][0] = rows[2][0] * mx[0][0] + rows[2][1] * mx[1][0] + rows[2][2] * mx[2][0];
 		result[2][1] = rows[2][0] * mx[0][1] + rows[2][1] * mx[1][1] + rows[2][2] * mx[2][1];
 		result[2][2] = rows[2][0] * mx[0][2] + rows[2][1] * mx[1][2] + rows[2][2] * mx[2][2];
 
 		return result;
+	}
+
+	inline Vector2 Matrix3x3::GetTranslation() const
+	{
+		// 1 0 x 
+		// 0 1 y 
+		// 0 0 1 
+
+		return { rows[0][2], rows[1][2] };
+	}
+
+	inline float Matrix3x3::GetRotation() const
+	{
+		// cos -sin 0 
+		// sin  cos 0 
+		//  0    0  1 
+
+		// y = sin(angle) = rows[1][0] 
+		// x = cos(angle) = rows[0][0] 
+
+		return std::atan2(rows[1][0], rows[0][0]);
+	}
+
+	inline Vector2 Matrix3x3::GetScale() const
+	{
+		Vector2 x = { rows[0][0], rows[0][1] };
+		Vector2 y = { rows[1][0], rows[1][1] };
+
+		return { x.Length(), y.Length() };
 	}
 
 	inline Matrix3x3 Matrix3x3::CreateScale(const Vector2& scale)

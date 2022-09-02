@@ -1,5 +1,6 @@
 #include "Actor.h"
-#include"Factory.h"
+#include "Factory.h"
+#include "Engine.h"
 #include "Components/RendererComponent.h"
 
 namespace gre 
@@ -9,6 +10,16 @@ namespace gre
 		name = other.name;
 		tag = other.tag;
 		m_transform = other.m_transform;
+		lifespan = other.lifespan;
+
+		if (lifespan != 0)
+		{
+			lifespan -= g_time.deltaTime;
+			if (lifespan <= 0)
+			{
+				SetDestroy();
+			}
+		}
 		
 		m_scene = other.m_scene;
 
@@ -26,6 +37,14 @@ namespace gre
 	void Actor::Update()
 	{
 		if (!active) return;
+		if (lifespan != 0)
+		{
+			lifespan -= g_time.deltaTime;
+			if (lifespan <= 0)
+			{
+				SetDestroy();
+			}
+		}
 
 		for (auto& component : m_components) {component->Update();}
 		for (auto& child : m_children) {child->Update();}
@@ -76,6 +95,7 @@ namespace gre
 		READ_DATA(value, tag);
 		READ_DATA(value, name);
 		READ_DATA(value, active);
+		READ_DATA(value, lifespan);
 
 		if (value.HasMember("transform")) m_transform.Read(value["transform"]);
 

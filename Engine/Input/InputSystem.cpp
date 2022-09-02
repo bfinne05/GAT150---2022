@@ -9,6 +9,7 @@ namespace gre
 	const uint32_t key_down = SDL_SCANCODE_DOWN;
 	const uint32_t key_left = SDL_SCANCODE_LEFT;
 	const uint32_t key_right = SDL_SCANCODE_RIGHT;
+	const uint32_t key_z = SDL_SCANCODE_Z;
 
 	const uint32_t key_w = SDL_SCANCODE_W;
 	const uint32_t key_a = SDL_SCANCODE_A;

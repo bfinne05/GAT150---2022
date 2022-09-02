@@ -4,7 +4,7 @@
 namespace FMOD
 {
 	// !! forward declare FMOD Channel 
-	struct Channel;
+	class Channel;
 }
 
 namespace gre

@@ -2,4 +2,5 @@
 
 void gre::RendererComponent::Update()
 {
+
 }

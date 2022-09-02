@@ -49,7 +49,7 @@ namespace gre
 		// if sound key not found in map (iter == end()), return default channel 
 		if (iter == m_sounds.end())
 		{
-			LOG("Error could not find sound %s.", name.c_str());
+			LOG("Error could not find sound %s", name.c_str());
 			return AudioChannel{};
 		}
 

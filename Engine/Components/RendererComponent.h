@@ -1,6 +1,7 @@
 #pragma once
 #include "FrameWork/Component.h"
 #include "Math/Rect.h"
+#include "Math/Vector2.h"
 
 namespace gre
 {
@@ -15,9 +16,13 @@ namespace gre
 		virtual void Update() override;
 
 		virtual Rect& GetSource() { return source; }
+		void SetFlipHorizontal(bool flip = true) { flipHorizontal = flip; }
+		bool GetFlipHorizontal() { return flipHorizontal; }
+
 
 	protected:
 		Rect source;
-
+		Vector2 registration = Vector2{0.5f, 0.5f};
+		bool flipHorizontal = false;
 	};
 }

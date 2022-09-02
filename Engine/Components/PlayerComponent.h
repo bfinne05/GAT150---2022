@@ -3,11 +3,11 @@
 #include "FrameWork/Actor.h"
 #include "Engine.h"
 #include "Physics/Collision.h"
-
+#include "CharacterComponent.h"
 namespace gre
 {
 
-	class PlayerComponent : public Component, public ICollision
+	class PlayerComponent : public CharacterComponent
 	{
 
 	public:
@@ -16,13 +16,16 @@ namespace gre
 		void Initialize() override;
 		void Update();
 
+		virtual void OnNotify(const Event& event) override;
 		virtual void OnCollisionEnter(Actor* other) override;
 		virtual void OnCollisionExit(Actor* other) override;
 		virtual bool Write(const rapidjson::Value& value) const override;
 		virtual bool Read(const rapidjson::Value& value) override;
 
 	public:
-		float speed = 0;
-
+		float jump = 1000.0f;
+		int m_groundCount = 0;
+		bool attackState = false;
+		float attackTimer = 0;
 	};
 }

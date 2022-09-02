@@ -21,8 +21,20 @@ void gre::EventManager::Subscribe(const std::string& name, Event::functionPtr fu
 	m_events[name].push_back(observer);
 }
 
-void gre::EventManager::unsubscribe(const std::string& name, GameObject* reciever)
+void gre::EventManager::Unsubscribe(const std::string& name, GameObject* receiver)
 {
+	// get list of observers for event
+	auto& observers = m_events[name];
+
+	// remove observer with matching receiver from observers
+	for (auto iter = observers.begin(); iter != observers.end(); iter++)
+	{
+		if (iter->receiver == receiver)
+		{
+			observers.erase(iter);
+			break;
+		}
+	}
 }
 
 void gre::EventManager::Notify(const Event& event)

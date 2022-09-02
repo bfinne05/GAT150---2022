@@ -62,10 +62,11 @@ int main()
 		//game->reset();
 		gre::Factory::Instance().Shutdown();
 
+	gre::g_resources.ShutDown();
+	
 	gre::g_physicsSystem.Shutdown();
 	gre::g_renderer.Shutdown();
 	gre::g_eventManager.Shutdown();
-	//gre::g_resources.Shutdown();
 	gre::g_audioSystem.Shutdown();
 	//gre::g_inputSystem.Shutdown();
 }

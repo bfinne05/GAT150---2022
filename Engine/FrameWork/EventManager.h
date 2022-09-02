@@ -19,7 +19,7 @@ namespace gre
 		void Update();
 
 		void Subscribe(const std::string& name, Event::functionPtr function, GameObject* reciever = nullptr);
-		void unsubscribe(const std::string& name, GameObject* reciever = nullptr);
+		void Unsubscribe(const std::string& name, GameObject* reciever = nullptr);
 
 		void Notify(const Event& event);
 

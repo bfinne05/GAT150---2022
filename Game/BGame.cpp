@@ -1,11 +1,18 @@
 #include "Engine.h"
+#include "Math/Random.h"
 #include "BGame.h"
 #include "FrameWork/Event.h"
+#include "GameComponents/EnemyComponent.h"
 #include <iostream>
 
 
 void BGame::Initialize()
 {
+	REGISTER_CLASS(EnemyComponent);
+	gre::g_audioSystem.AddAudio("sword", "audio/sword.wav");
+	gre::g_audioSystem.AddAudio("music", "audio/epic.mp3");
+	gre::g_audioSystem.AddAudio("destroy", "audio/enemy-destroyed.wav");
+
 	m_scene = std::make_unique<gre::Scene>();
 
 	rapidjson::Document document;
@@ -23,7 +30,9 @@ void BGame::Initialize()
 	}
 	m_scene->Initialize();
 
-	gre::g_eventManager.Subscribe("Event Add Points", std::bind(&BGame::OnAddPoints, this, std::placeholders::_1));
+	gre::g_eventManager.Subscribe("EVENT_ADD_POINTS", std::bind(&BGame::OnAddPoints, this, std::placeholders::_1));
+	gre::g_eventManager.Subscribe("EVENT_DROP", std::bind(&BGame::OnAddPoints, this, std::placeholders::_1));
+	gre::g_eventManager.Subscribe("EVENT_PLAYER_DEAD", std::bind(&BGame::OnAddPoints, this, std::placeholders::_1));
 }
 
 void BGame::Shutdown()
@@ -35,6 +44,7 @@ void BGame::Shutdown()
 void BGame::Update()
 {
 	m_scene->Update();
+
 
 	switch (m_gameState)
 	{
@@ -55,10 +65,40 @@ void BGame::Update()
 
 			m_scene->Add(std::move(actor));
 		}
+		for (int i = 0; i < 10; i++)
+		{
+			auto actor = gre::Factory::Instance().Create<gre::Actor>("Ghost");
+			actor->m_transform.position = { gre::randomf(0,800), 100.0f };
+			actor->Initialize();
+
+			m_scene->Add(std::move(actor));
+		}
 		m_gameState = gameState::game;
 		break;
 	case BGame::game:
+	{
+		if (m_SpawnTimer)
+		{
+			m_SpawnTimer -= gre::g_time.deltaTime;
+			if (m_SpawnTimer <= 0)
+			{
+				for (int numEnemies = gre::random(1, 5); numEnemies > 0; numEnemies--)
+				{
+					auto actor = gre::Factory::Instance().Create<gre::Actor>("Ghost");
+					actor->m_transform.position = { gre::randomf(0,800), 100.0f };
+					actor->Initialize();
+
+					m_scene->Add(std::move(actor));
+				}
+				m_SpawnTimer = 7;
+			}
+		}
+		//show score in game
+		auto actor = m_scene->GetActorFromName("Score");
+		auto component = actor->GetComponent<gre::TextComponent>();
+		component->SetText(std::to_string(m_score));
 		break;
+	}
 	case BGame::playerDead:
 		m_stateTimer -= gre::g_time.deltaTime;
 		if (m_stateTimer <= 0)
@@ -89,4 +129,47 @@ void BGame::OnPlayerDead(const gre::Event& event)
 	m_gameState = gameState::playerDead;
 	m_lives--;
 	m_stateTimer = 3.0f;
+}
+void BGame::EVENT_DROP(const gre::Event& event)
+{
+	int chance = gre::random(1, 6);
+	std::cout << chance << std::endl;
+	if (chance >= 3)
+	{
+		std::cout << "Coin Dropped" << std::endl;
+		auto actor = gre::Factory::Instance().Create<gre::Actor>("Coin");
+		actor->m_transform.position = { gre::randomf(0,800), 100.0f };
+		actor->Initialize();
+
+		m_scene->Add(std::move(actor));
+	}
+}
+
+
+void BGame::OnNotify(const gre::Event& event)
+{
+	if (event.name == "EVENT_ADD_POINTS")
+	{
+		AddPoints(std::get<int>(event.data));
+	}
+	if (event.name == "EVENT_PLAYER_DEAD")
+	{
+		m_gameState = gameState::playerDead;
+		m_lives--;
+		m_stateTimer = 3;
+	}
+	if (event.name == "EVENT_DROP")
+	{
+		int chance = gre::random(1, 6);
+		std::cout << chance << std::endl;
+		if (chance >= 3)
+		{
+			std::cout << "Coin Dropped" << std::endl;
+			auto actor = gre::Factory::Instance().Create<gre::Actor>("Coin");
+			actor->m_transform.position = { gre::randomf(0,800), 100.0f };
+			actor->Initialize();
+
+			m_scene->Add(std::move(actor));
+		}
+	}
 }

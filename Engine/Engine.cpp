@@ -24,6 +24,7 @@ namespace gre
 		REGISTER_CLASS(SpriteAnimComponent);
 		REGISTER_CLASS(TilemapComponent);
 		REGISTER_CLASS(TextComponent);
+		REGISTER_CLASS(CameraComponent);
 	
 
 	}

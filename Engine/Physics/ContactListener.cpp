@@ -36,11 +36,13 @@ namespace gre
 			Actor* actorA = (Actor*)(fixtureA->GetUserData().pointer);
 			Actor* actorB = (Actor*)(fixtureB->GetUserData().pointer);
 
+			if (actorA->IsDestroy() || actorB->IsDestroy()) return;
+
 			if (!actorA->GetComponent<CollisionComponent>())
 			{
 				actorA->GetComponent<CollisionComponent>()->OnCollisionExit(actorB);
 			}
-			if (!actorB->GetComponent<CollisionComponent>())
+			if (actorB->GetComponent<CollisionComponent>())
 			{
 				actorB->GetComponent<CollisionComponent>()->OnCollisionExit(actorA);
 			}

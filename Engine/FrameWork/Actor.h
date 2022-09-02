@@ -58,6 +58,7 @@ namespace gre
 		std::string tag;
 		bool active = true;
 		bool m_destroy = false;
+		float lifespan = 0;
 
 		Scene* m_scene = nullptr;
 		Actor* m_parent = nullptr;
