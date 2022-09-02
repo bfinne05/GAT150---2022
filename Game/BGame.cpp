@@ -12,6 +12,7 @@ void BGame::Initialize()
 	gre::g_audioSystem.AddAudio("sword", "audio/sword.wav");
 	gre::g_audioSystem.AddAudio("music", "audio/epic.mp3");
 	gre::g_audioSystem.AddAudio("destroy", "audio/enemy-destroyed.wav");
+	gre::g_audioSystem.AddAudio("jump", "audio/jump.wav");
 
 	m_scene = std::make_unique<gre::Scene>();
 
@@ -73,6 +74,14 @@ void BGame::Update()
 
 			m_scene->Add(std::move(actor));
 		}
+		for (int i = 0; i < 1; i++)
+		{
+			auto actor = gre::Factory::Instance().Create<gre::Actor>("Dog");
+			actor->m_transform.position = { gre::randomf(200,800), 100.0f };
+			actor->Initialize();
+
+			m_scene->Add(std::move(actor));
+		}
 		m_gameState = gameState::game;
 		break;
 	case BGame::game:
@@ -85,6 +94,14 @@ void BGame::Update()
 				for (int numEnemies = gre::random(1, 5); numEnemies > 0; numEnemies--)
 				{
 					auto actor = gre::Factory::Instance().Create<gre::Actor>("Ghost");
+					actor->m_transform.position = { gre::randomf(0,800), 100.0f };
+					actor->Initialize();
+
+					m_scene->Add(std::move(actor));
+				}
+				for (int numEnemies = gre::random(1, 3); numEnemies > 0; numEnemies--)
+				{
+					auto actor = gre::Factory::Instance().Create<gre::Actor>("Dog");
 					actor->m_transform.position = { gre::randomf(0,800), 100.0f };
 					actor->Initialize();
 

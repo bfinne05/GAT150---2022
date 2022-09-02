@@ -59,7 +59,6 @@ namespace gre
             READ_DATA(value, data.friction);
             READ_DATA(value, data.restitution);
             READ_DATA(value, data.is_trigger);
-
             READ_DATA(value, scale_offset);
 
             return true;

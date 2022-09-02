@@ -17,6 +17,14 @@ void EnemyComponent::Update()
 
         auto component = m_owner->GetComponent<gre::PhysicsComponent>();
         if (component) component->ApplyForce(force);
+        {
+            auto component = m_owner->GetComponent<gre::RendererComponent>();
+            if (component)
+            {
+                component->SetFlipHorizontal(direction.x < 0);
+            }
+
+        }
     }
 }
 

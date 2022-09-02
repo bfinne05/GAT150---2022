@@ -55,6 +55,7 @@ namespace gre
 			auto component = m_owner->GetComponent<PhysicsComponent>();
 			if (component)
 			{
+				g_audioSystem.PlayAudio("jump");
 				std::cout << "i jumped!!!" << std::endl;
 				// if in the air (m_groundCount == 0) then reduce force 
 				float multiplier = (m_groundCount > 0) ? 1 : 0.2f;
